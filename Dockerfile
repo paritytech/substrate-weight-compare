@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y git libssl-dev && rm -rf /var/lib/apt/l
 COPY --from=builder /usr/local/cargo/bin/subweight-web /usr/local/bin/subweight-web
 COPY --from=builder /usr/local/cargo/bin/subweight /usr/local/bin/subweight
 COPY web/static web/static
+COPY entrypoint.sh /bin/entrypoint.sh
 
 EXPOSE 443
 EXPOSE 80
-CMD ["subweight-web"]
+#CMD ["subweight-web"]
+ENTRYPOINT ["entrypoint.sh"]
